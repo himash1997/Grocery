@@ -102,27 +102,29 @@ struct Home : View {
                 
             }
             
-            HStack(spacing: 15){
+            ScrollView(.vertical, showsIndicators: false){
                 
-                HStack{
-                        Image(systemName: "magnifyingglass")
-                            .font(.body)
-                        TextField("Search", text: $txt)
-                    }
-                .padding(10)
-                .background(Color("Color1"))
-                .cornerRadius(20)
-                
-                Button(action: {
+
+                HStack(spacing: 15){
                     
-                }) {
-                    Image("mic")
-                        .renderingMode(.original)
+                    HStack{
+                            Image(systemName: "magnifyingglass")
+                                .font(.body)
+                            TextField("Search", text: $txt)
+                        }
+                    .padding(10)
+                    .background(Color("Color1"))
+                    .cornerRadius(20)
+                    
+                    Button(action: {
+                        
+                    }) {
+                        Image("mic")
+                            .renderingMode(.original)
+                    }
+                    
                 }
                 
-            }
-            
-            ScrollView(.vertical, showsIndicators: false){
                 Image("top")
                 .resizable()
                 .clipped()

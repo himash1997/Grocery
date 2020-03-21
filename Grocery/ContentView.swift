@@ -72,12 +72,58 @@ struct CustomTableView : View {
 }
 
 struct Home : View {
+    
+    @State var txt = ""
+    
     var body : some View{
         
-        VStack{
-            Text("Home")
+        VStack(spacing: 15){
+            HStack(spacing: 12){
+                Image("my")
+                    .renderingMode(.original)
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(Circle())
+                    .clipped()
+                    .frame(width:25 , height:30)
+                    
+                
+                Text("Hi, Himash")
+                    .font(.body)
+                
+                Spacer()
+                Button(action: {
+                    
+                }) {
+                    Image("filter")
+                        .renderingMode(.original)
+                }
+                
+            }
+            
+            HStack(spacing: 15){
+                
+                HStack{
+                        Image(systemName: "magnifyingglass")
+                            .font(.body)
+                        TextField("Search", text: $txt)
+                    }
+                .padding(10)
+                .background(Color("Color1"))
+                .cornerRadius(20)
+                
+                Button(action: {
+                    
+                }) {
+                    Image("mic")
+                        .renderingMode(.original)
+                }
+                
+            }
+            
             Spacer()
-        }
+            
+        }.padding(.horizontal)
         
     }
 }

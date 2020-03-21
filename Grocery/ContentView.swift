@@ -259,6 +259,55 @@ struct RecipeCellView : View {
     }
 }
 
+struct Detail : View {
+    
+    @Binding var show : Bool
+    
+    var body : some View{
+        
+        VStack(spacing: 0){
+            Image("header")
+            .resizable()
+            .frame(height: UIScreen.main.bounds.height / 2.5)
+                .overlay(
+                    VStack{
+                        HStack(spacing: 12){
+                            Button(action: {
+                                
+                            }) {
+                                Image("back")
+                                    .renderingMode(.original)
+                            }
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                
+                            }) {
+                                Image("download")
+                                    .renderingMode(.original)
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                Image("Wishlist")
+                                    .renderingMode(.original)
+                            }
+                        }
+                        
+                        Spacer()
+                    }
+            )
+            
+            ScrollView(.vertical, showsIndicators: false){
+                Text("Hello")
+            }
+        }
+        
+    }
+}
+
 // sample datas...
 
 var tabs = ["Home","Wishlist","Cart"]

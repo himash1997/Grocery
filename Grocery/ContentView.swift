@@ -331,9 +331,53 @@ struct Detail : View {
                         .foregroundColor(.gray)
                     Divider()
                         .padding(.vertical, 15)
-                }
-                
-            }.padding()
+                    
+                    HStack{
+                        Image("rp1").renderingMode(.original)
+                        Text("Diana Organic Farm")
+                        Spacer()
+                        Button(action: {
+                            
+                        }) {
+                            Image("chat")
+                                .renderingMode(.original)
+                        }
+                    }
+                    
+                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at dolor fringilla, pharetra urna non, porttitor lectus. Etiam erat turpis, finibus vel metus ac, fringilla lacinia sapien. Proin in enim mauris. Aenean dignissim laoreet risus tincidunt bibendum. Suspendisse orci elit, ornare et nisi eget, viverra pellentesque risus")
+                        .foregroundColor(.gray)
+                    
+                    HStack{
+                        Text("Reviews (50)")
+                        Spacer()
+                        Button(action: {
+                            
+                        }) {
+                            Text("More")
+                        }.foregroundColor(Color("Color"))
+                    }.padding(.vertical , 10)
+                    
+                }.padding()
+                    .overlay(
+                            VStack{
+                                HStack{
+                                    Spacer()
+                                    HStack{
+                                        Text("4")
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                    }.padding()
+                                        .background(Color.green)
+                                    .cornerRadius(12)
+                                }
+                                .padding(.top, -10)
+                                .padding(.trailing)
+                                
+                                Spacer()
+                            }
+                        )
+                        
+                    }
             .background(RoundedCorner().fill(Color.white))
             .padding(.top, -top! - 25)
             .navigationBarTitle("")

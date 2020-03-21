@@ -9,8 +9,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var selected = "Home"
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack{
+            
+            if self.selected == "Home"{
+                Home()
+            }else if self.selected == "Wishlist"{
+                GeometryReader{_ in
+                    Text("Wishlist")
+                }
+            }else{
+               GeometryReader{_ in
+                    Text("Cart")
+                }
+            }
+            CustomTableView(selected: $selected)
+        }
     }
 }
 
@@ -30,14 +47,39 @@ struct CustomTableView : View {
             ForEach(tabs, id: \.self){i in
                 VStack(spacing: 10){
                     Capsule()
-                        .fill(self.selected == i ? Color("Color") : Color.clear)
+                        .fill(Color.clear)
                         .frame(height: 5)
+                        .overlay(Capsule().fill(self.selected == i ? Color("Color") : Color.clear).frame(width: 55, height: 5))
+                    
+                    Button(action: {
+                        self.selected = i
+                    }) {
+                        
+                        VStack{
+                            Image(i)
+                                .renderingMode(.original)
+                            Text(i)
+                                .foregroundColor(.black)
+                        }
+                        
+                    }
+                    
                 }
             }
-            
-        }
+        }.padding(.horizontal)
     }
     
+}
+
+struct Home : View {
+    var body : some View{
+        
+        VStack{
+            Text("Home")
+            Spacer()
+        }
+        
+    }
 }
 
 

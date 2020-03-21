@@ -97,6 +97,7 @@ struct Home : View {
                 }) {
                     Image("filter")
                         .renderingMode(.original)
+                        .frame(width:25 , height:25)
                 }
                 
             }
@@ -121,6 +122,49 @@ struct Home : View {
                 
             }
             
+            ScrollView(.vertical, showsIndicators: false){
+                Image("top")
+                .resizable()
+                .clipped()
+                .overlay(
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Text("GET 20% OFF")
+                                .font(.title)
+                                .foregroundColor(Color.white)
+                            Spacer()
+                        }.padding()
+                    }
+                )
+                
+                HStack{
+                    Text("Categories")
+                        .font(.title)
+                    Spacer()
+                    Button(action: {
+                        
+                    }) {
+                        Text("More")
+                    }.foregroundColor(Color("Color"))
+                }.padding(.vertical, 15)
+                
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack(spacing: 15){
+                        ForEach(categories, id: \.self){i in
+                            VStack{
+                                Image(i)
+                                    .renderingMode(.original)
+                                Text(i)
+                            }
+                        }
+                    }
+                }
+                
+                HomeBottomView()
+            }
+            
+            
             Spacer()
             
         }.padding(.horizontal)
@@ -128,6 +172,90 @@ struct Home : View {
     }
 }
 
+struct HomeBottomView : View {
+    var body : some View{
+        
+        VStack(spacing: 15){
+            HStack{
+                Text("Fresh New Items")
+                    .font(.title)
+                Spacer()
+                Button(action: {
+                    
+                }) {
+                    Text("More")
+                }.foregroundColor(Color("Color"))
+            }.padding(.vertical, 15)
+            
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack(spacing: 15){
+                    ForEach(freshitems){i in
+                        FreshCellView(data: i)
+                    }
+                }
+            }
+            
+            
+            HStack{
+                Text("Recipe")
+                    .font(.title)
+                Spacer()
+                Button(action: {
+                    
+                }) {
+                    Text("More")
+                }.foregroundColor(Color("Color"))
+            }.padding(.vertical, 15)
+            
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack(spacing: 15){
+                    ForEach(recipeitems){i in
+                        RecipeCellView(data: i)
+                    }
+                }
+            }
+            
+        }
+        
+    }
+}
+
+struct FreshCellView : View {
+    
+    var data : fresh
+    
+    var body : some View{
+        VStack(spacing: 10){
+            Image(data.image)
+            Text(data.name)
+                .fontWeight(.semibold)
+            Text(data.price)
+                .foregroundColor(.green)
+                .fontWeight(.semibold)
+        }
+    }
+}
+
+struct RecipeCellView : View {
+    
+    var data : recipe
+    
+    var body : some View{
+        VStack(spacing: 10){
+            Image(data.image)
+            HStack(spacing: 10){
+                Image(data.authorpic)
+                VStack(alignment: .leading, spacing: 6){
+                    Text(data.name)
+                        .fontWeight(.semibold)
+                    Text(data.author)
+                        .foregroundColor(.green)
+                        .fontWeight(.semibold)
+                }
+            }
+        }
+    }
+}
 
 // sample datas...
 

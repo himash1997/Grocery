@@ -13,29 +13,31 @@ struct ContentView: View {
     @State var selected = "Home"
     
     var body: some View {
-        VStack{
-            
-            if self.selected == "Home"{
-                Home()
-            }else if self.selected == "Wishlist"{
-                GeometryReader{_ in
-                    Text("Wishlist")
+        
+        NavigationView{
+         
+            VStack{
+                
+                if self.selected == "Home"{
+                    Home()
+                }else if self.selected == "Wishlist"{
+                    GeometryReader{_ in
+                        Text("Wishlist")
+                    }
+                }else{
+                   GeometryReader{_ in
+                        Text("Cart")
+                    }
                 }
-            }else{
-               GeometryReader{_ in
-                    Text("Cart")
-                }
+                CustomTableView(selected: $selected)
             }
-            CustomTableView(selected: $selected)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
 
 struct CustomTableView : View {
     
@@ -225,15 +227,31 @@ struct HomeBottomView : View {
 struct FreshCellView : View {
     
     var data : fresh
+    @State var show = false
     
     var body : some View{
-        VStack(spacing: 10){
-            Image(data.image)
-            Text(data.name)
-                .fontWeight(.semibold)
-            Text(data.price)
-                .foregroundColor(.green)
-                .fontWeight(.semibold)
+        
+        ZStack{
+            
+            NavigationLink(destination: Detail(show: self.$show), isActive: self.$show) {
+                
+                Text("")
+            }
+            
+            VStack(spacing: 10){
+                
+                Image(data.image)
+                Text(data.name)
+                    .fontWeight(.semibold)
+                Text(data.price)
+                    .foregroundColor(.green)
+                    .fontWeight(.semibold)
+                
+            }.onTapGesture {
+                
+                self.show.toggle()
+            }
+            
         }
     }
 }
@@ -262,6 +280,7 @@ struct RecipeCellView : View {
 struct Detail : View {
     
     @Binding var show : Bool
+    @State var top = UIApplication.shared.windows.last?.safeAreaInsets.top
     
     var body : some View{
         
@@ -269,10 +288,13 @@ struct Detail : View {
             Image("header")
             .resizable()
             .frame(height: UIScreen.main.bounds.height / 2.5)
+            .edgesIgnoringSafeArea(.top)
                 .overlay(
                     VStack{
                         HStack(spacing: 12){
                             Button(action: {
+                                
+                                self.show.toggle()
                                 
                             }) {
                                 Image("back")
@@ -297,14 +319,38 @@ struct Detail : View {
                         }
                         
                         Spacer()
-                    }
+                    }.padding()
             )
             
             ScrollView(.vertical, showsIndicators: false){
-                Text("Hello")
-            }
+                
+                VStack(alignment: .leading , spacing: 15){
+                    Text("Sedless Lemon")
+                        .font(.title)
+                    Text("30.00 / kg")
+                        .foregroundColor(.gray)
+                    Divider()
+                        .padding(.vertical, 15)
+                }
+                
+            }.padding()
+            .background(RoundedCorner().fill(Color.white))
+            .padding(.top, -top! - 25)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+
         }
         
+    }
+}
+
+struct RoundedCorner : Shape {
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 35, height: 35))
+        
+        return Path(path.cgPath)
     }
 }
 

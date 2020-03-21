@@ -357,27 +357,26 @@ struct Detail : View {
                         }.foregroundColor(Color("Color"))
                     }.padding(.vertical , 10)
                     
-                }.padding()
-                    .overlay(
-                            VStack{
-                                HStack{
-                                    Spacer()
-                                    HStack{
-                                        Text("4")
-                                        Image(systemName: "star.fill")
-                                            .foregroundColor(.yellow)
-                                    }.padding()
-                                        .background(Color.green)
-                                    .cornerRadius(12)
-                                }
-                                .padding(.top, -10)
-                                .padding(.trailing)
-                                
-                                Spacer()
-                            }
-                        )
-                        
                     }
+                }.padding()
+                .overlay(
+                        VStack{
+                            HStack{
+                                Spacer()
+                                HStack{
+                                    Text("4")
+                                    Image(systemName: "star.fill")
+                                        .foregroundColor(.yellow)
+                                }.padding()
+                                    .background(Color.green)
+                                .cornerRadius(12)
+                            }
+                            .padding(.top, -20)
+                            .padding(.trailing)
+                            
+                            Spacer()
+                        }
+                    )
             .background(RoundedCorner().fill(Color.white))
             .padding(.top, -top! - 25)
             .navigationBarTitle("")

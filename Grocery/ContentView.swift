@@ -281,6 +281,7 @@ struct Detail : View {
     
     @Binding var show : Bool
     @State var top = UIApplication.shared.windows.last?.safeAreaInsets.top
+    @State var count = 0
     
     var body : some View{
         
@@ -357,21 +358,65 @@ struct Detail : View {
                         }.foregroundColor(Color("Color"))
                     }.padding(.vertical , 10)
                     
-                    HStack{
-                        Image("rp2")
-                            .renderingMode(.original)
+                    HStack(alignment: .top){
+                        
+                        Image("rp2").renderingMode(.original)
                         VStack(alignment: .leading, spacing: 6){
-                            HStack{
-                                Text("5")
-                                Image(systemName: "star.fill")
-                                    .foregroundColor(.yellow)
-                                Text("Oh yen se")
-                                Text("The lemon is fo fresh..")
+                           HStack{
+                                Text("4")
+                                Image(systemName: "star.fill").foregroundColor(.yellow)
                             }
+                            Text("Kamali Ardar")
+                            Text("The Lemon is So Fresh And Delivery is So Speed....")
                         }
+                        
                     }.padding()
                     .background(Color("Color1"))
                     .cornerRadius(12)
+                    
+                    HStack(spacing: 20){
+                        
+                        Spacer(minLength: 12)
+                        
+                        Button(action: {
+                            
+                            if self.count != 0{
+                                self.count -= 1
+                            }
+                            
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .font(.largeTitle)
+                                .foregroundColor(.green)
+                        }
+                        
+                        Text("\(self.count)")
+                        
+                        Button(action: {
+                           
+                            
+                                self.count += 1
+                            
+                            
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .font(.largeTitle)
+                                .foregroundColor(.green)
+                        }
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Text("Add to cart")
+                            .padding()
+                            
+                        }.foregroundColor(.white)
+                        .background(Color("Color"))
+                        .cornerRadius(12)
+                        
+                        Spacer(minLength: 12)
+                        
+                    }
                     
                 }
             }.padding()

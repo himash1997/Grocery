@@ -334,7 +334,7 @@ struct Detail : View {
                     
                     HStack{
                         Image("rp1").renderingMode(.original)
-                        Text("Diana Organic Farm")
+                        Text("Natasha  Farm")
                         Spacer()
                         Button(action: {
                             
@@ -357,26 +357,42 @@ struct Detail : View {
                         }.foregroundColor(Color("Color"))
                     }.padding(.vertical , 10)
                     
-                    }
-                }.padding()
-                .overlay(
-                        VStack{
+                    HStack{
+                        Image("rp2")
+                            .renderingMode(.original)
+                        VStack(alignment: .leading, spacing: 6){
                             HStack{
-                                Spacer()
-                                HStack{
-                                    Text("4")
-                                    Image(systemName: "star.fill")
-                                        .foregroundColor(.yellow)
-                                }.padding()
-                                    .background(Color.green)
-                                .cornerRadius(12)
+                                Text("5")
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.yellow)
+                                Text("Oh yen se")
+                                Text("The lemon is fo fresh..")
                             }
-                            .padding(.top, -20)
-                            .padding(.trailing)
-                            
-                            Spacer()
                         }
-                    )
+                    }.padding()
+                    .background(Color("Color1"))
+                    .cornerRadius(12)
+                    
+                }
+            }.padding()
+            .overlay(
+                    VStack{
+                        HStack{
+                            Spacer()
+                            HStack{
+                                Text("4")
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.yellow)
+                            }.padding()
+                                .background(Color.green)
+                            .cornerRadius(12)
+                        }
+                        .padding(.top, -20)
+                        .padding(.trailing)
+                        
+                        Spacer()
+                    }
+                )
             .background(RoundedCorner().fill(Color.white))
             .padding(.top, -top! - 25)
             .navigationBarTitle("")

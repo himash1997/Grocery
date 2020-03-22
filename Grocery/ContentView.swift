@@ -426,6 +426,7 @@ struct Detail : View {
                             Spacer()
                             HStack{
                                 Text("4")
+                                    .foregroundColor(Color.white)
                                 Image(systemName: "star.fill")
                                     .foregroundColor(.yellow)
                             }.padding()
